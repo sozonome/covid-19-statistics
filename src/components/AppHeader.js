@@ -20,11 +20,14 @@ class AppHeader extends HTMLElement{
         }
         .headerContainer{
           padding: 20px 0;
-          background-color: #2C2B3D;
-          color: white;
         }
         h1{
           font-weight: 800;
+        }
+        @media screen and (max-width: 513px){
+          .headerContainer{
+            background-color: #e53935;
+          }
         }
       </style>
       <div class="headerContainer">

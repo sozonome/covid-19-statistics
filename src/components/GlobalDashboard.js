@@ -1,4 +1,5 @@
 import styleInitSetter from "../styles/styleSetter";
+import formatNumber from "../functions/formatNumber.js";
 
 class GlobalDashboard extends HTMLElement{
   constructor(){
@@ -21,10 +22,7 @@ class GlobalDashboard extends HTMLElement{
       <style>
         .globalStatsContainer{
           padding: 10px;
-          background-color: #EEF2EE;
           text-align: center;
-          border-bottom-left-radius: 20px;
-          border-bottom-right-radius: 20px;
         }
         .statsContainer{
           color: white;
@@ -34,6 +32,15 @@ class GlobalDashboard extends HTMLElement{
         }
         .item{
           flex-basis: 33%;
+          background-color: #F5F5F6;
+          border-radius: 10px;
+          box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+          transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+          padding: 20px 0;
+          margin: 0 5px;
+        }
+        .item:hover{
+          box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
         }
         .item p{
           font-size: 3rem;
@@ -59,15 +66,15 @@ class GlobalDashboard extends HTMLElement{
         <h2>Global Stats</h2>
         <div class="statsContainer">
           <div class="item confirmed">
-            <p>${Intl.NumberFormat('en-EN').format(this._confirmed.value)}</p>
+            <p>${formatNumber(this._confirmed.value)}</p>
             <h4>Confirmed</h4>
           </div>
           <div class="item recovered">
-            <p>${Intl.NumberFormat('en-EN').format(this._recovered.value)}</p>
+            <p>${formatNumber(this._recovered.value)}</p>
             <h4>Recovered</h4>
           </div>
           <div class="item deaths">
-            <p>${Intl.NumberFormat('en-EN').format(this._deaths.value)}</p>
+            <p>${formatNumber(this._deaths.value)}</p>
             <h4>Deaths</h4>
           </div>
         </div>

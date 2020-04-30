@@ -28,7 +28,9 @@ class SearchBar extends HTMLElement {
           display: flex;
         }
         #countryInput{
-          border: none;
+          background-color: #F5F5F6;
+          
+          border: 2px solid #ffa726;
           border-top-left-radius: 20px;
           border-bottom-left-radius: 20px;
           flex-basis: 70%;
@@ -41,7 +43,7 @@ class SearchBar extends HTMLElement {
           border-top-right-radius: 20px;
           border-bottom-right-radius: 20px;
           text-transform: uppercase;
-          background-color: #7C8E6C;
+          background-color: #ffa726;
           color: white;
           font-size: 1.4rem;
         }

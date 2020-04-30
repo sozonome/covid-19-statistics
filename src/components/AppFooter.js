@@ -16,7 +16,6 @@ class AppFooter extends HTMLElement {
         }
         div{
           margin: 30px 0;
-          color: #D2D2D2;
         }
         p{
           font-weight: 300;

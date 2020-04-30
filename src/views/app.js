@@ -6,6 +6,7 @@ import "../components/CountryList";
 import "../components/CountryItem";
 import "../components/AppFooter";
 import "../components/SearchedCountry";
+import "../components/DailySummary";
 
 import "typeface-nunito";
 import "typeface-catamaran";
@@ -19,6 +20,7 @@ const app = () => {
   const countryListElement = document.createElement("country-list");
   const countryItem = document.createElement("country-item");
   const searchedCountry = document.createElement("searched-country");
+  const dailySummary = document.createElement("daily-summary");
 
   const getAllCountry = () => {
     fetch(`${baseUrl}/countries`)
@@ -64,13 +66,26 @@ const app = () => {
           console.log(responseJson.message);
         } else {
           renderGlobalDashboard(responseJson);
-          renderLastUdpate(responseJson.lastUpdate);
         }
       })
       .catch((error) => {
         console.log(error);
       });
   };
+
+  const getDailySummary = () => {
+    fetch(`${baseUrl}/daily`)
+      .then((response) => {
+        return response.json();
+      })
+      .then((responseJson)=>{
+        if(responseJson.error){
+          console.log(responseJson.message)
+        }else{
+          renderDailySummary(responseJson[responseJson.length-1]);
+        }
+      })
+  }
 
   const renderAllCountry = (result) => {
     countryListElement.countries = result;
@@ -79,11 +94,11 @@ const app = () => {
 
   const renderSearchedCountry = (result) => {
     searchedCountry.country = result;
-    document.querySelector("main").append(searchedCountry);
+    document.querySelector("main").insertBefore(searchedCountry, dailySummary);
   }
   const fallbackSearchedCountry = (result) =>{
     searchedCountry.renderError(result);
-    document.querySelector("main").append(searchedCountry)
+    document.querySelector("main").insertBefore(searchedCountry, dailySummary)
   }
 
   const renderGlobalDashboard = (result) => {
@@ -91,9 +106,14 @@ const app = () => {
     document.querySelector("main").append(globalDashboard, searchBarElement);
   }
 
+  const renderDailySummary = (result) => {
+    dailySummary.dailySummaryData = result;
+    document.querySelector("main").append(dailySummary);
+  }
+
   document.addEventListener("DOMContentLoaded", () => {
-    // getAllCountry();
     getGlobalData();
+    getDailySummary();
   });
 
   searchBarElement.clickEvent = getDataByCountry;
