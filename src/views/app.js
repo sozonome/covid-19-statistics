@@ -7,6 +7,7 @@ import "../components/CountryItem";
 import "../components/AppFooter";
 import "../components/SearchedCountry";
 import "../components/DailySummary";
+import "../components/Profile.js";
 
 import "typeface-nunito";
 import "typeface-catamaran";
@@ -46,7 +47,7 @@ const app = () => {
       })
       .then((responseJson) => {
         if (responseJson.error) {
-          fallbackSearchedCountry(searchBarElement.value)
+          fallbackSearchedCountry(searchBarElement.value);
         } else {
           renderSearchedCountry(responseJson);
         }
@@ -78,14 +79,14 @@ const app = () => {
       .then((response) => {
         return response.json();
       })
-      .then((responseJson)=>{
-        if(responseJson.error){
-          console.log(responseJson.message)
-        }else{
-          renderDailySummary(responseJson[responseJson.length-1]);
+      .then((responseJson) => {
+        if (responseJson.error) {
+          console.log(responseJson.message);
+        } else {
+          renderDailySummary(responseJson[responseJson.length - 1]);
         }
-      })
-  }
+      });
+  };
 
   const renderAllCountry = (result) => {
     countryListElement.countries = result;
@@ -95,21 +96,21 @@ const app = () => {
   const renderSearchedCountry = (result) => {
     searchedCountry.country = result;
     document.querySelector("main").insertBefore(searchedCountry, dailySummary);
-  }
-  const fallbackSearchedCountry = (result) =>{
+  };
+  const fallbackSearchedCountry = (result) => {
     searchedCountry.renderError(result);
-    document.querySelector("main").insertBefore(searchedCountry, dailySummary)
-  }
+    document.querySelector("main").insertBefore(searchedCountry, dailySummary);
+  };
 
   const renderGlobalDashboard = (result) => {
-    globalDashboard.globalData = result
+    globalDashboard.globalData = result;
     document.querySelector("main").append(globalDashboard, searchBarElement);
-  }
+  };
 
   const renderDailySummary = (result) => {
     dailySummary.dailySummaryData = result;
     document.querySelector("main").append(dailySummary);
-  }
+  };
 
   document.addEventListener("DOMContentLoaded", () => {
     getGlobalData();
