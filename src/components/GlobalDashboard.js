@@ -11,7 +11,7 @@ class GlobalDashboard extends HTMLElement{
     this._confirmed = globalData.confirmed;
     this._recovered = globalData.recovered;
     this._deaths = globalData.deaths;
-    var options = { weekday: 'short', year: 'numeric', month: 'short', day:'numeric', hour: "2-digit", minute: "2-digit"};
+    const options = { weekday: 'short', year: 'numeric', month: 'short', day:'numeric', hour: "2-digit", minute: "2-digit"};
     this._lastUpdate = new Date(globalData.lastUpdate).toLocaleDateString("en-US", options);
     this.render();
   }

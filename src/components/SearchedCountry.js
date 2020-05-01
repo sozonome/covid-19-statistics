@@ -10,7 +10,7 @@ class SearchedCountry extends HTMLElement{
     this._confirmed = country.confirmed.value;
     this._recovered = country.recovered.value;
     this._deaths = country.deaths.value;
-    var options = { weekday: 'short', year: 'numeric', month: 'short', day:'numeric', hour: "2-digit", minute: "2-digit"};
+    const options = { weekday: 'short', year: 'numeric', month: 'short', day:'numeric', hour: "2-digit", minute: "2-digit"};
     this._lastUpdate = new Date(country.lastUpdate).toLocaleDateString("en-US", options);
     this.render();
   }
